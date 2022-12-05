@@ -1,7 +1,351 @@
 :root {
-    --color1: #8ECAE6;
-    --color2: #219ebc;
-    --color3: #023047;
-    --color4: #FFB703;
-    --color5: #FB8500;
+    --backgroundColor: rgb(240, 228, 218);
+    --cardOddBackground: rgba(251, 133, 0, .25);
+    --cardEvenBackground: rgba(255, 183, 3, .4);
+    --buttonBackgroundColor: rgb(251, 133, 0);
+    --buttonTransitionColor: #FFB703;
+
+    --fontPrimary: 'Roboto Serif', serif;
+    --fontSecondary: 'Roboto', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+}
+
+.desktop-title-wrapper,
+.desktop-img-header {
+    display: none;
+}
+
+
+body {
+    background-color: var(--backgroundColor);
+    font-family: var(--fontSecondary);
+
+    scroll-snap-align: start;
+}
+
+.title-wrapper {
+    height: 15vh;
+    padding-bottom: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    scroll-snap-align: start;
+
+}
+
+.title-wrapper .title {
+    font-family: var(--fontPrimary);
+    font-size: 24px;
+
+    text-align: center;
+    letter-spacing: 8px;
+}
+
+.title-wrapper .title p {
+    font-size: 14px;
+}
+
+.cards {
+    width: 100%;
+    margin-bottom: 100px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.cards .card {
+    width: 90%;
+    padding: 8%;
+
+    background-color: var(--cardOddBackground);
+    box-shadow: 3px 3px 6px 3px rgba(0, 0, 0, .25);
+    border-radius: 20px;
+
+    scroll-snap-align: start;
+    scroll-margin: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.cards .lastCard {
+    justify-content: space-around;
+    scroll-snap-align: start;
+    scroll-margin: 0;
+}
+
+.cards .card h2 {
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+
+.cards .card:nth-of-type(even) {
+    background-color: var(--cardEvenBackground);
+}
+
+.cards .card a {
+    width: 100%;
+    pointer-events: none;
+    cursor: default;
+}
+
+.cards .card a .img-container {
+    width: 100%;
+    border-radius: 50%;
+    background-size: cover;
+}
+
+.cards .card a .img-container::after {
+    content: '';
+    padding-bottom: 90%;
+    display: block;
+}
+
+.cards .card a .img-coworking {
+    background-image: url(../Images/index-img/coworking-img.jpeg);
+}
+
+.cards .card a .img-restauration {
+    background-image: url(../Images/index-img/restauration-img.jpg);
+}
+
+.cards .card a .img-bienEtre {
+    background-image: url(../Images/index-img/bien-etre-img.jpg);
+    background-position: right 50% bottom 35%;
+}
+
+.cards .card .p-wrapper {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cards .card .p-wrapper p {
+    word-spacing: 5px;
+    text-align: center;
+}
+
+
+.cards .card .btn {
+    border: none;
+
+    width: 80%;
+    height: 30px;
+
+    background-color: var(--buttonBackgroundColor);
+
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, .25);
+    border-radius: 15px;
+
+    color: white;
+    letter-spacing: 8px;
+    cursor: pointer;
+}
+
+/*=========================================== MEDIA Q /*===========================================*/
+@media screen and (min-width: 770px) {
+
+    html {
+        overflow-y: none;
+        scroll-snap-type: none;
+    }
+
+    .cards .lastCard .img-contact {
+        display: none;
+    }
+
+    .desktop-img-header {
+        background-image: url(../Images/index-img/hero-img.jpeg);
+        background-size: cover;
+        background-position: right 50% bottom 35%;
+
+        display: block;
+        height: 40vh;
+    }
+
+    .desktop-title-wrapper {
+        width: 90%;
+        margin: 50px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+
+    }
+
+    .desktop-title-wrapper .img-owners-wrapper {
+        display: flex;
+    }
+
+    .desktop-title-wrapper .img-owners-wrapper img {
+        width: 100px;
+    }
+
+
+    .cards {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        gap: 150px;
+    }
+
+    .cards .card {
+        position: relative;
+        padding-top: 10px;
+        width: 40%;
+        height: 250px;
+        scroll-margin: 25px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+
+        transition: width ease-in-out .5s;
+    }
+
+    .cards .card.card-effect {
+        width: 60%;
+    }
+
+    .cards .card-withImage {
+        padding-bottom: 35px;
+    }
+
+    .cards .card-withImage:nth-of-type(odd) {
+        align-self: flex-end;
+        margin-right: 100px;
+        padding-left: 110px;
+    }
+
+    .cards .card-withImage:nth-of-type(even) {
+        align-self: flex-start;
+        margin-left: 100px;
+        padding-right: 110px;
+    }
+
+    .cards .card-withImage:nth-child(3) {
+        padding-top: 0;
+    }
+
+    .cards .lastCard {
+        width: 60%;
+        gap: 10px;
+    }
+
+    .cards .lastCard.lastEffect {
+        width: 90%;
+    }
+
+    .cards .card a .img-container {
+        position: absolute;
+        top: calc(50% - 150px);
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+
+        pointer-events: initial;
+        cursor: pointer;
+
+        overflow: hidden;
+
+        transition: scale ease-in-out 300ms;
+    }
+
+    .cards .card a .img-container:hover {
+        scale: 1.05;
+    }
+
+    .cards .card:nth-of-type(odd) a .img-container {
+        left: -200px;
+
+        outline: 10px solid rgba(251, 133, 0, .75);
+        outline-offset: -10px;
+    }
+
+    .cards .card:nth-of-type(even) a .img-container {
+        right: -200px;
+
+        outline: 10px solid rgba(255, 183, 3, .75);
+        outline-offset: -10px;
+    }
+
+    .cards .lastCard {
+        padding-top: 30px;
+        text-align: center;
+    }
+
+    .cards .card .p-wrapper p {
+        text-align: left;
+    }
+
+    .cards .card .btn {
+        position: absolute;
+        margin: 0;
+
+        height: 30px;
+        width: 250px;
+
+        bottom: -10px;
+        z-index: 1;
+        overflow: hidden;
+    }
+
+    .cards .card .btn:hover {
+        scale: 1.05;
+    }
+
+
+
+    .cards .card-withImage:nth-of-type(odd) .btn {
+        right: 70px;
+    }
+
+    .cards .card-withImage:nth-of-type(even) .btn {
+        left: 70px;
+    }
+
+    .cards .lastCard .btn {
+        right: 70px;
+    }
+
+    body .cards .card .btn::before {
+        background-color: var(--buttonTransitionColor);
+        content: '';
+        inset: 0;
+        position: absolute;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform .5s ease-in-out;
+        z-index: -1;
+        border-radius: 15px;
+    }
+
+
+    body .cards .card .btn:hover::before {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+
+    .nav-bottom {
+        display: none;
+    }
 }
